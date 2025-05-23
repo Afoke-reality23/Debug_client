@@ -1,0 +1,39 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Cookie</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <script>
+        const ip = 'https://yourapp.onrender.com'; // Replace with your Render URL
+        async function testCookie() {
+            try {
+                // Set cookie
+                const setResponse = await fetch(`${ip}/set-cookie`, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const setData = await setResponse.json();
+                console.log('Set cookie:', setData);
+
+                // Check cookie
+                const checkResponse = await fetch(`${ip}/check-cookie`, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const checkData = await checkResponse.json();
+                console.log('Check cookie:', checkData);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        testCookie();
+    </script>
+</body>
+</html>
